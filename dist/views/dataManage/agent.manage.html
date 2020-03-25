@@ -1,0 +1,169 @@
+<div class="w-100 px-1">
+   <div class="row m-y-1">
+      <div class="col col-xs-12">
+         <div class="card">
+            <div class="card-block">
+               <div class="row">
+                  <div class="col-sm-3">
+                     <h4 class="card-title">代理商数据维护</h4>
+                     <div class="small text-muted" style="margin-top:-10px;">代理商数据维护</div>
+                  </div>
+                  <div class="col-xs-9">
+                     <div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">
+
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+                           <!-- <button type="button" class="btn btn-info" (click)="refresh(fileGrid)">
+                              <i class="icon-refresh icons"
+                                 [ngClass]="{'fa-spin': isLoading}"></i>
+                              搜索
+                           </button> -->
+
+                           </div>
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+
+                           <button type="button" class="btn btn-outline-primary"
+                                   (click)="onBtnNewClicked()">
+                              <i class="icon-note icons"></i>
+                              新建代理商
+                           </button>
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-12">
+                     <ag-grid-ng2 #buGrid class="w-100 ag-fresh" style="height: 60%" [gridOptions]="gridOptions"
+                                  [columnDefs]="fileGridColumns" [rowData]="rowData" rowHeight="30" enableSorting="false"
+                                  rowSelection="single" rowDeselection="true"
+                                  enableColResize="true" (gridReady)="onFileGridReady($event)"
+                                  (selectionChanged)="onRowSelected()">
+
+                     </ag-grid-ng2>
+
+                  </div>
+               </div>
+
+               <p></p>
+
+
+            </div>
+         </div>
+
+        <!--  <div class="card" style="padding: 10px;" *ngIf="showItem">
+           <div class="row">
+                <div class="col-sm-2" style="text-align: center">
+                   <input type="text" placeholder="输入代理商CODE" [(ngModel)]="buDetail.agentcode">
+                </div>
+                <div class="col-sm-2" style="text-align: center">
+                   <input type="text" placeholder="输入代理商名称" [(ngModel)]="buDetail.agentnamecn">
+                </div>
+                <div class="col-sm-2" style="text-align: center">
+                   <select style="width: 100%;" [(ngModel)]="buDetail.buCode" placeholder="选择产品BU" [ngModelOptions]="{standalone: true}">
+                        <option [value]="category.bucode" *ngFor="let category of buList">{{category.bunamecn}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-4" style="text-align: center" *ngIf="buDetail.agentcode&&buDetail.agentnamecn&&buDetail.buCode">
+                   <button type="button" class="btn btn-defalult" (click)="onBtnSure()">确定</button>
+                   <button *ngIf= "isNew" type="button" class="btn btn-danger" (click)="removeItem()">删除</button>
+                </div>
+             </div>
+         </div> -->
+      </div>
+   </div>
+
+</div>
+
+<alert-widget #alert title="提示"
+              message="确定要删除该条记录吗?"
+              type="warning"></alert-widget>
+
+<div *ngIf="showItem" (click)="showItem=false;" style="width: 100%;height:100%;background: #aeaeae;position:fixed;top:0;left:0;opacity: 0.4;z-index: 100;">
+</div>
+
+<div *ngIf="showItem" style="width: 60%;height: 60%;background: #fff;position:fixed;top: 15%;left:20%;z-index: 101;border-radius: 10px;padding: 20px;overflow-y: auto;">
+      <div style="width:100%;height:50px;font-size: 18px;text-align: center;border-bottom: 1px solid #bbb;">
+        代理商数据管理
+      </div>
+      <div style="padding:20px 10px 5px 10px;">
+        <label style="width:100%;">SAP/K3开票代理商编码&nbsp;&nbsp;<input type="text" placeholder="输入SAP/K3开票代理商编码" [(ngModel)]="buDetail.agentCode" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+
+      <div style="padding:5px 10px;">
+        <label style="width:100%;">开票代理商名称&nbsp;&nbsp;<input type="text" placeholder="输入开票代理商名称" [(ngModel)]="buDetail.agentNameCN" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+      <div style="padding:5px 10px;">
+        <label style="width:100%;">代理商简称编码&nbsp;&nbsp;<input type="text" placeholder="输入代理商简称编码" [(ngModel)]="buDetail.agentShortCode" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+      <div style="padding:5px 10px;">
+        <label style="width:100%;">代理商简称中文名&nbsp;&nbsp;<input type="text" placeholder="输入代理商简称中文名" [(ngModel)]="buDetail.agentShortNameCn" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+       <div style="padding:5px 10px;">
+        <label style="width:100%;">代理商简称英文名&nbsp;&nbsp;<input type="text" placeholder="输入代理商简称英文名" [(ngModel)]="buDetail.agentShortNameEn" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+      <div style="padding:5px 10px;">
+        <label style="width:100%;">起始合作年月&nbsp;&nbsp;
+         <input type="month" style="width:calc(100% - 200px);float: right;border: 1px solid #d1d4d7;" [(ngModel)]="buDetail.startDate" />
+         <!-- <select style="width:calc(100% - 200px);float: right;" [(ngModel)]="buDetail.startDate" placeholder="起始合作年月" [ngModelOptions]="{standalone: true}">
+              <option [value]="category" *ngFor="let category of allMonths">{{category}}</option>
+          </select> -->
+         </label>
+      </div>
+      <div style="padding:5px 10px;">
+        <label style="width:100%;">终止合作年月&nbsp;&nbsp;
+         <input type="month" style="width:calc(100% - 200px);float: right;border: 1px solid #d1d4d7;" [(ngModel)]="buDetail.endDate"/>
+         </label>
+      </div>
+
+       <div style="padding:5px 10px;">
+        <label style="width:100%;">合作状态&nbsp;&nbsp;<select style="width:calc(100% - 200px);float: right;" [(ngModel)]="buDetail.cooperativeStatus" placeholder="选择合作状态" [ngModelOptions]="{standalone: true}">
+              <option value="合作中">合作中</option>
+              <option value="已终止">已终止</option>
+              <option value="终止合作">终止合作</option>
+          </select></label>
+      </div>
+
+       <div style="padding:5px 10px;">
+        <label style="width:100%;">是否平台代理商&nbsp;&nbsp;<select style="width:calc(100% - 200px);float: right;" [(ngModel)]="buDetail.isPlatformAgents" placeholder="选择是否平台代理商" [ngModelOptions]="{standalone: true}">
+              <option value="是">是</option>
+              <option value="否">否</option>
+          </select></label>
+      </div>
+
+       <div style="padding:5px 10px;">
+        <label style="width:100%;">级别&nbsp;&nbsp;
+          <select style="width:calc(100% - 200px);float: right;" [(ngModel)]="buDetail.level" placeholder="选择级别" [ngModelOptions]="{standalone: true}">
+                <option value="一级">一级</option>
+                <option value="二级">二级</option>
+                <option value="三级">三级</option>
+                <option value="四级">四级</option>
+                <option value="五级">五级</option>
+                <option value="六级">六级</option>
+                <option value="七级">七级</option>
+                <option value="八级">八级</option>
+                <option value="九级">九级</option>
+                <option value="十级">十级</option>
+            </select>
+        </label>
+      </div>
+
+      <div style="padding:5px 10px;">
+        <label style="width:100%;">业务条线&nbsp;&nbsp;
+          <select style="width:calc(100% - 200px);float: right;" [(ngModel)]="buDetail.buStr" placeholder="选择业务条线" [ngModelOptions]="{standalone: true}">
+              <option [value]="category.bucode+'-'+category.bunamecn" *ngFor="let category of buList">{{category.bunamecn}}</option>
+          </select>
+        </label>
+      </div>
+
+      <div style="padding:20px 10px;" class="row">
+        <div style="text-align: center" class="col-sm-4">
+           <button type="button" class="btn btn-primary" (click)="onBtnSure()" [disabled]="!buDetail.agentCode||!buDetail.agentNameCN||!buDetail.buStr">确定</button>
+        </div>
+        <div style="text-align: center" class="col-sm-4">
+           <button type="button" class="btn btn-danger" (click)="removeItem()" *ngIf= "isNew">删除</button>
+        </div>
+        <div style="text-align: center" class="col-sm-4">
+           <button type="button" class="btn btn-defalult" (click)=" showItem = false; ">取消</button>
+        </div>
+      </div>
+</div>

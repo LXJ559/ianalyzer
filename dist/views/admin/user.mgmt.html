@@ -1,0 +1,173 @@
+<div class="w-100 px-1">
+   <div class="row m-y-1">
+      <div class="col col-xs-12">
+         <div class="card">
+            <div class="card-block">
+               <div class="row">
+                  <div class="col-sm-5">
+                     <h4 class="card-title">{{"admin.user.list.title" | translate}}</h4>
+                     <div class="small text-muted" style="margin-top:-10px;">{{"admin.user.list.desc" | translate}}</div>
+                  </div>
+                  <div class="col-xs-7">
+                     <div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">
+
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+                           <button type="button" class="btn btn-info" (click)="refresh(userGrid)">
+                              <i class="icon-refresh icons"
+                                 [ngClass]="{'fa-spin': isLoading}"></i>
+                              {{"admin.user.list.actions.refresh" | translate}}
+                           </button>
+
+                        </div>
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+
+                           <button type="button" class="btn btn-primary"
+                                   (click)="onBtnNewClicked(userGrid)">
+                              <i class="fa fa-plus"></i>
+                              {{"admin.user.list.actions.add" | translate}}
+                           </button>
+                           <button type="button" class="btn btn-success" *ngIf="selectedUser" (click)="onBtnUpdateClicked(userGrid)">
+                              <i class="fa fa-edit"></i>
+                              {{"admin.user.list.actions.update" | translate}}
+                           </button>
+                           <button type="button" class="btn btn-danger" *ngIf="selectedUser"
+                                   (click)="onBtnRemoveClicked(userGrid)">
+                              <i class="fa fa-remove"></i>
+                              {{"admin.user.list.actions.remove" | translate}}
+                           </button>
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+
+               <div class="row">
+                  <div class="col-sm-12">
+                     <ag-grid-ng2 #userGrid class="w-100 ag-fresh" style="height: 400px" [gridOptions]="gridOptions"
+                                  [columnDefs]="gridColumns" rowHeight="30" enableSorting="true"
+                                  rowSelection="single" rowDeselection="true" enableColResize="true"
+                                  (gridReady)="onGridReady($event)" (rowSelected)="onRowSelected()">
+
+                     </ag-grid-ng2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<alert-widget #alert title="{{'admin.user.list.alert.title' | translate:{name: selectedUser?.loginname} }}"
+              message="{{'admin.user.list.alert.message' | translate:{name: selectedUser?.loginname} }}"
+              type="warning"></alert-widget>
+
+<dialog-widget #userDialog (commit)="onCommit($event)" (cleanup)="onDismiss()">
+   <div class="container">
+      <form #userMgmtForm="ngForm">
+         <fieldset [disabled]="formLoading ? true : null">
+            <div class="row form-group"
+                 [ngClass]="{
+              'has-success': userData.isUsernameValid === true,
+              'has-danger': userData.isUsernameValid === false
+              }">
+               <label class="form-control-label">{{"admin.user.dialog.form.username.label" | translate}}</label>
+               <div class="input-group">
+                  <span class="input-group-addon"><i class="icon-user"></i></span>
+                  <input class="form-control" type="text"
+                         placeholder="{{'admin.user.dialog.form.username.tip' | translate}}" name="account"
+                         [(ngModel)]="userData.username" #account="ngModel"
+                         [ngClass]="{
+                      'form-control-success': userData.isUsernameValid === true,
+                      'form-control-danger': userData.isUsernameValid === false
+                      }" required [readonly]="userData.updateUser ? true : null"/>
+               </div>
+            </div>
+            <div class="row form-group"
+                 [ngClass]="{
+              'has-success': !password.errors && password.touched,
+              'has-danger': password.errors && password.touched
+              }">
+               <label class="form-control-label">{{"admin.user.dialog.form.password.label" | translate}}</label>
+               <div class="input-group">
+                  <span class="input-group-addon"><i class="icon-lock"></i></span>
+                  <input class="form-control" type="password"
+                         placeholder="{{'admin.user.dialog.form.password.tip' | translate}}" required
+                         [(ngModel)]="userData.password" name="password" #password="ngModel"
+                         [ngClass]="{
+                        'form-control-success': !password.errors && password.touched,
+                        'form-control-danger': password.errors && password.touched
+                      }">
+               </div>
+            </div>
+            <!--<div class="row form-group"-->
+            <!--[ngClass]="{-->
+            <!--'has-success': password.value && password.value === confirmPwd.value,-->
+            <!--'has-danger': password.value && password.value !== confirmPwd.value-->
+            <!--}">-->
+            <!--<label class="form-control-label">{{"admin.user.dialog.form.confirmPassword.label" | translate}}</label>-->
+            <!--<div class="input-group">-->
+            <!--<span class="input-group-addon"><i class="icon-lock"></i></span>-->
+            <!--<input class="form-control" type="password" name="confirmPwd" #confirmPwd="ngModel" required-->
+            <!--placeholder="{{'admin.user.dialog.form.confirmPassword.tip' | translate}}"-->
+            <!--[(ngModel)]="userData.confirmPwd"-->
+            <!--[ngClass]="{-->
+            <!--'form-control-success': password.value && password.value === confirmPwd.value,-->
+            <!--'form-control-danger': password.value && password.value !== confirmPwd.value-->
+            <!--}">-->
+            <!--</div>-->
+            <!--</div>-->
+            <div class="row form-group">
+               <label>{{"admin.user.dialog.form.displayName.label" | translate}}</label>
+               <div class="input-group">
+                  <span class="input-group-addon"><i class="icon-user-following"></i></span>
+                  <input class="form-control" type="text"
+                         placeholder="{{'admin.user.dialog.form.displayName.tip' | translate}}"
+                         [(ngModel)]="userData.displayname" name="displayname" #displayname="ngModel">
+               </div>
+            </div>
+            <div class="row form-group">
+               <label>邮箱</label>
+               <div class="input-group">
+                  <input class="form-control" type="text"
+                         placeholder="请输入邮箱"
+                         [(ngModel)]="userData.email" name="email" #displayname="ngModel">
+               </div>
+            </div>
+            <div class="row form-group">
+               <label>{{"admin.user.dialog.form.role.label" | translate}}</label>
+               <div class="input-group">
+                  <select name="role" id="role" class="form-control" name="role" #role="ngModel"
+                          [(ngModel)]="userData.type">
+                     <option *ngFor="let role of roleOptions;" [value]="role.value">{{role.label}}</option>
+                  </select>
+               </div>
+            </div>
+
+            <div class="row form-group">
+               <label>{{"admin.user.dialog.form.category.label" | translate}}</label>
+               <!-- <ul class="list-group input-group">
+                  <li class="form-check-inline" *ngFor="let category of userData.categoryOptions">
+                     <label class="form-check-label">
+                        <input type="checkbox" [(ngModel)]="category.checked" [ngModelOptions]="{standalone: true}"
+                               [checked]="category.checked ? true : null">{{category.label}}
+                     </label>
+                  </li>
+               </ul> -->
+              <div class="input-group" *ngFor="let category of userData.categoryOptions">
+                <p class="checkbox-p">{{category.domainvaluecn}}</p>
+                <div class="checkbox">
+                  <label *ngFor="let group of category.groupTemplates" class="more-pd">
+                    <input type="checkbox" [(ngModel)]="group.checked" [ngModelOptions]="{standalone: true}"> {{group.groupName}}
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label *ngFor="let sub of category.subTemplates" class="more-pd">
+                    <input type="checkbox" [(ngModel)]="sub.checked" [ngModelOptions]="{standalone: true}"> {{sub.templatename}}
+                  </label>
+                </div>
+              </div>
+            </div>
+         </fieldset>
+      </form>
+   </div>
+</dialog-widget>

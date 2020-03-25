@@ -1,0 +1,74 @@
+<html>
+<head>
+   <base href="./"/>
+   <title>I-ANALYZER</title>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- 1. Load libraries -->
+   <!-- Polyfill(s) for older browsers -->
+   <!-- build:remove -->
+   <script src="node_modules/core-js/client/shim.min.js"></script>
+   <script src="node_modules/zone.js/dist/zone.js"></script>
+   <script src="node_modules/reflect-metadata/Reflect.js"></script>
+   <script src="node_modules/systemjs/dist/system.src.js"></script>
+   <script src="node_modules/tether/dist/js/tether.min.js"></script>
+   <script src="node_modules/jquery/dist/jquery.min.js"></script>
+   <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+   <!-- /build -->
+
+   <!-- Css for ag-grid -->
+   <!-- build:css assets/css/deps.css -->
+   <link rel="stylesheet" href="node_modules/tether/dist/css/tether.css">
+   <link href="node_modules/ag-grid/dist/styles/ag-grid.css" rel="stylesheet" />
+   <link href="node_modules/ag-grid/dist/styles/theme-fresh.css" rel="stylesheet" />
+   <!-- /build -->
+
+   <!-- build:css assets/css/vendor.css -->
+   <!-- Root Template -->
+   <!-- Icons -->
+   <link rel="stylesheet" href="libs/bootstrap/bootstrap-flex.css">
+   <link href="libs/GenesisUI/assets/css/font-awesome.min.css" rel="stylesheet">
+   <link href="libs/GenesisUI/assets/css/simple-line-icons.css" rel="stylesheet">
+
+   <!-- Premium Icons -->
+   <link href="libs/GenesisUI/assets/css/glyphicons.css" rel="stylesheet">
+   <link href="libs/GenesisUI/assets/css/glyphicons-filetypes.css" rel="stylesheet">
+   <link href="libs/GenesisUI/assets/css/glyphicons-social.css" rel="stylesheet">
+
+   <!-- Main styles for this application -->
+   <link href="libs/GenesisUI/assets/css/style.css" rel="stylesheet">
+   <!-- /build -->
+
+   <!-- build:css assets/css/main.css -->
+   <!-- Customize css -->
+   <link href="css/main.css" rel="stylesheet">
+   <!-- /build -->
+
+   <!-- build:replace <script src="js/xlsx.core.min.js"></script> -->
+   <script src="node_modules/xlsx/dist/xlsx.core.min.js"></script>
+   <!-- /build -->
+
+   <!-- 2. Configure SystemJS -->
+   <!-- build:js js/bundle.js-->
+   <!-- /build -->
+   <!-- build:js  js/app.js -->
+   <script src="config.js"></script>
+   <script>
+      System.import('app').catch(function(err){ console.error(err); });
+   </script>
+   <!-- /build -->
+</head>
+<!-- 3. Display the application -->
+<body class="navbar-fixed fixed-nav">
+<app>
+   <div class="container" style="height: 100%">
+      <div class="row" style="height: 100%">
+         <div class="col-xs-12 m-x-auto pull-xs-none flex-xs-middle text-xs-center">
+            <h1><i class="fa-spin fa fa-gear fa-lg"></i> LOADING...</h1>
+         </div>
+      </div>
+   </div>
+</app>
+</body>
+</html>

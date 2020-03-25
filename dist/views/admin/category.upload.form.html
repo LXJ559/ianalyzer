@@ -1,0 +1,91 @@
+<dialog-widget #dialog (cleanup)="dismiss()" (commit)="onCommit($event)">
+   <div class="row">
+      <div class="col-sm-12">
+         <div ng2FileDrop [ngClass]="{'uploader-file-over': isFileOverDropzone}"
+              (fileOver)="setFileOver($event)"
+              [uploader]="uploader"
+              (click)="fileInput.click()"
+              class="card card-block uploader-drop-zone text-md-center">
+            {{"analyzer.uploadDialog.dropZone" | translate}}
+            <input #fileInput type="file" ng2FileSelect [uploader]="uploader" [hidden]="true"/>
+         </div>
+         <div class="col-sm-12 col-lg-12" *ngIf="fileItem">
+            <form>
+               <div class="form-group row">
+                  <label for="name">{{"analyzer.uploadDialog.form.name" | translate}}</label>
+                  <div class="input-group">
+                     <span class="input-group-addon"><i class="fa fa-bookmark-o"></i></span>
+                     <input type="text" name="name" id="name"
+                            [(ngModel)]="fileItem.attachname" class="w-100 form-control" *ngIf="!isUpdateVersion">
+                     <label class="form-control" *ngIf="isUpdateVersion">{{fileItem.attachname}}</label>
+                     <span class="input-group-addon">{{fileItem.suffix}}</span>
+                  </div>
+               </div>
+               <!-- <div class="form-group row">
+                  <label>{{"analyzer.uploadDialog.form.category" | translate}}</label>
+                  <div class="input-group">
+                     <span class="input-group-addon"><i class="fa fa-gear"></i></span>
+                     <select class="w-100 form-control" *ngIf="!isUpdateVersion" [(ngModel)]="fileItem.attachcategory"
+                             [ngModelOptions]="{standalone: true}">
+                        <option [value]="category.value" *ngFor="let category of categories">{{category.label}}</option>
+                     </select>
+                     <label class="form-control" *ngIf="isUpdateVersion">{{fileItem.attachcategory}}</label>
+                  </div>
+               </div> -->
+               <div class="row">
+                  <div class="form-group col-sm-6 pl-0">
+                     <label>{{"analyzer.uploadDialog.form.size" | translate}}</label>
+                     <div class="input-group">
+                        <span class="input-group-addon">
+                           <i class="fa fa-database"></i>
+                        </span>
+                        <input type="text" value="{{sizeFormatter(fileItem.size)}}" class="form-control" readonly/>
+                     </div>
+                  </div>
+                  <div class="form-group col-sm-6 pr-0">
+                     <label>{{"analyzer.uploadDialog.form.version" | translate}}</label>
+                     <div class="input-group">
+                        <span class="input-group-addon">
+                           <i class="fa fa-code-fork"></i>
+                        </span>
+                        <input type="text" value="{{fileItem.version ? fileItem.version : 1}}"
+                               class="form-control" readonly/>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="form-group row">
+                  <label>选择分类</label>
+                  <div class="input-group">
+                     <span class="input-group-addon"><i class="fa fa-gear"></i></span>
+                     <select class="w-100 form-control" [(ngModel)]="cateSelect"
+                             [ngModelOptions]="{standalone: true}">
+                        <option [value]="category.domainvaluecode" *ngFor="let category of cateOption">{{category.domainvaluecn}}</option>
+                     </select>
+                  </div>
+               </div>
+
+               <div class="row">
+                  <div class="form-group col-sm-6 pl-0 rm-mg">
+                    <label>是否覆盖</label>
+                  </div>
+                  <div class="input-group">
+                    <label class="radio-inline">
+                      <input type="radio" name="inlineRadioOptions1" value="cover" [(ngModel)]="cover"> 覆盖
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="inlineRadioOptions2" value="uncover" [(ngModel)]="cover"> 不覆盖
+                    </label>
+                  </div>
+               </div>
+               <!-- <div class="form-group row" [hidden]="uploader.queue.length === 0">
+                  <label>{{"analyzer.uploadDialog.form.preview" | translate}}</label>
+                  <div class="input-group">
+                     <excel-preview #preview [file]="previewFile" [styles]="{'height': '200px'}"></excel-preview>
+                  </div>
+               </div> -->
+            </form>
+         </div>
+      </div>
+   </div>
+</dialog-widget>

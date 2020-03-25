@@ -1,0 +1,186 @@
+<div class="w-100 px-1">
+   <div class="row m-y-1">
+      <div class="col col-xs-12">
+         <div class="card">
+            <div class="card-block">
+               <div class="row">
+                  <div class="col-sm-3">
+                     <h4 class="card-title">产品数据维护</h4>
+                     <div class="small text-muted" style="margin-top:-10px;">产品数据维护</div>
+                  </div>
+                  <div class="col-xs-9">
+                     <div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">
+                        
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+                           <!-- <button type="button" class="btn btn-info" (click)="refresh(fileGrid)">
+                              <i class="icon-refresh icons"
+                                 [ngClass]="{'fa-spin': isLoading}"></i>
+                              搜索
+                           </button> -->
+
+                           </div>
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+
+                           <button type="button" class="btn btn-outline-primary"
+                                   (click)="onBtnNewClicked()">
+                              <i class="icon-note icons"></i>
+                              新建产品
+                           </button>
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-12">
+                     <ag-grid-ng2 #buGrid class="w-100 ag-fresh" style="height: 60%" [gridOptions]="gridOptions"
+                                  [columnDefs]="fileGridColumns" [rowData]="rowData" rowHeight="30" enableSorting="false"
+                                  rowSelection="single" rowDeselection="true"
+                                  enableColResize="true" (gridReady)="onFileGridReady($event)"
+                                  (selectionChanged)="onRowSelected()">
+
+                     </ag-grid-ng2>
+                     
+                  </div>
+               </div>
+
+               <p></p>
+
+               
+            </div>
+         </div>
+
+     
+      </div>
+   </div>
+   
+</div>
+
+<alert-widget #alert title="提示"
+              message="确定要删除该条记录吗?"
+              type="warning"></alert-widget>
+
+
+  <div *ngIf="showItem" (click)="showItem=false;" style="width: 100%;height:100%;background: #aeaeae;position:fixed;top:0;left:0;opacity: 0.4;z-index: 100;">
+</div>
+
+<div *ngIf="showItem" style="width: 80%;height: 60%;background: #fff;position:fixed;top: 15%;left:10%;z-index: 101;border-radius: 10px;padding: 20px;overflow: auto;">
+      <div style="float: left;width:50%;height:100%;">
+        <div style="width:100%;height:50px;font-size: 18px;text-align: right;border-bottom: 1px solid #aeaeae;">
+        产品数
+      </div>
+      <div style="padding:20px 10px 5px 10px;">
+        <label style="width:100%;">BU&nbsp;&nbsp;
+          <select style="width:calc(100% - 200px);float: right;" [(ngModel)]="buDetail.buStr" placeholder="选择BU" [ngModelOptions]="{standalone: true}">
+              <option [value]="category.bucode+'-'+category.bunamecn" *ngFor="let category of buList">{{category.bunamecn}}</option>
+          </select>
+        </label>
+        
+      </div>
+
+       <div style="padding:5px 10px;">
+        <label style="width:100%;">数据来源&nbsp;&nbsp;<input type="text" placeholder="输入数据来源" [(ngModel)]="buDetail.dataSource" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+
+      <div style="padding:5px 10px;">
+        <label style="width:100%;">产品大类代码&nbsp;&nbsp;<input type="text" placeholder="输入产品大类代码" [(ngModel)]="buDetail.productCategoryCode" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+      <div style="padding:5px 10px;">
+        <label style="width:100%;">描述&nbsp;&nbsp;<input type="text" placeholder="输入描述" [(ngModel)]="buDetail.remark" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+      <div style="padding:5px 10px;">
+        <label style="width:100%;">预算产品&nbsp;&nbsp;<input type="text" placeholder="输入预算产品" [(ngModel)]="buDetail.budgetProduct" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+       <div style="padding:5px 10px;">
+        <label style="width:100%;">BI产品类别编码&nbsp;&nbsp;<input type="text" placeholder="输入BI产品类别编码" [(ngModel)]="buDetail.biCategoryCode" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+      <div style="padding:5px 10px;">
+        <label style="width:100%;">BI产品类别中文&nbsp;&nbsp;<input type="text" placeholder="输入BI产品类别中文" [(ngModel)]="buDetail.biCategoryCN" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+      <div style="padding:5px 10px;">
+        <label style="width:100%;">BI产品类别英文&nbsp;&nbsp;<input type="text" placeholder="输入BI产品类别英文" [(ngModel)]="buDetail.biCategoryEN" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+
+       <div style="padding:5px 10px;">
+        <label style="width:100%;">BU产品类别编码&nbsp;&nbsp;<input type="text" placeholder="输入BU产品类别编码" [(ngModel)]="buDetail.buProductType" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+
+       <div style="padding:5px 10px;">
+        <label style="width:100%;">BU产品类别中文&nbsp;&nbsp;<input type="text" placeholder="输入BU产品类别中文" [(ngModel)]="buDetail.buProductTypeCN" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+
+       <div style="padding:5px 10px;">
+        <label style="width:100%;">BU产品类别英文&nbsp;&nbsp;<input type="text" placeholder="输入BU产品类别英文" [(ngModel)]="buDetail.buProductTypeEN" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+      <div style="padding:20px 10px;" class="row">
+        <div style="text-align: center" class="col-sm-4">
+           <button type="button" class="btn btn-primary" (click)="onBtnSure()" [disabled]="!buDetail.buStr||!buDetail.productCategoryCode">确定</button>
+        </div>
+        <div style="text-align: center" class="col-sm-4">
+        </div>
+        <div style="text-align: center" class="col-sm-4">
+        </div>
+        
+      </div>
+      </div>
+      <div style="float: left;width:50%;height:100%;">
+        <div style="width:100%;height:50px;font-size: 18px;text-align: left;border-bottom: 1px solid #aeaeae;">
+        据管理
+      </div>
+      <div style="padding:20px 10px 5px 10px;">
+        <label style="width:100%;">集团产品类别编码&nbsp;&nbsp;<input type="text" placeholder="输入集团产品类别编码" [(ngModel)]="buDetail.groupProductType" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+
+      <div style="padding:5px 10px;">
+        <label style="width:100%;">集团产品类别中文&nbsp;&nbsp;<input type="text" placeholder="输入集团产品类别中文" [(ngModel)]="buDetail.groupProductTypeCN" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+      <div style="padding:5px 10px;">
+        <label style="width:100%;">集团产品类别英文&nbsp;&nbsp;<input type="text" placeholder="输入集团产品类别英文" [(ngModel)]="buDetail.groupProductTypeEN" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+      <div style="padding:5px 10px;">
+        <label style="width:100%;">是否停产&nbsp;&nbsp;<select style="width:calc(100% - 200px);float: right;" [(ngModel)]="buDetail.isStopProduction" placeholder="选择是否停产" [ngModelOptions]="{standalone: true}">
+              <option value="是">是</option>
+              <option value="否">否</option>
+          </select></label>
+      </div>
+       <div style="padding:5px 10px;">
+        <label style="width:100%;">备注&nbsp;&nbsp;<input type="text" placeholder="输入备注" [(ngModel)]="buDetail.comment" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+      <div style="padding:5px 10px;">
+        <label style="width:100%;">BU重点产品&nbsp;&nbsp;<input type="text" placeholder="输入BU重点产品" [(ngModel)]="buDetail.buKeyProduct" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+      <div style="padding:5px 10px;">
+        <label style="width:100%;">集团重点产品&nbsp;&nbsp;<input type="text" placeholder="输入集团重点产品" [(ngModel)]="buDetail.groupKeyProduct" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+
+       <div style="padding:5px 10px;">
+        <label style="width:100%;">市场份额产品类别编码&nbsp;&nbsp;<input type="text" placeholder="输入市场份额产品类别编码" [(ngModel)]="buDetail.marketShareProductType" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+
+       <div style="padding:5px 10px;">
+        <label style="width:100%;">市场份额产品类别中文&nbsp;&nbsp;<input type="text" placeholder="输入市场份额产品类别中文" [(ngModel)]="buDetail.marketShareProductTypeCN" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+
+       <div style="padding:5px 10px;">
+        <label style="width:100%;">市场份额产品类别英文&nbsp;&nbsp;<input type="text" placeholder="输入市场份额产品类别英文" [(ngModel)]="buDetail.marketShareProductTypeEN" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+
+      <div style="padding:5px 10px;height:41px;">
+       <label style="width:100%;">年度&nbsp;&nbsp;<select style="width:calc(100% - 200px);float: right;" [(ngModel)]="buDetail.year" placeholder="年度" [ngModelOptions]="{standalone: true}">
+              <option [value]="year" *ngFor="let year of yesrs">{{year}}</option>
+          </select></label>
+      </div>
+
+      <div style="padding:20px 10px;" class="row">
+        <div style="text-align: center" class="col-sm-4">
+           
+        </div>
+        <div style="text-align: center" class="col-sm-4">
+           <button type="button" class="btn btn-danger" (click)="removeItem()" *ngIf= "isNew">删除</button>
+        </div>
+        <div style="text-align: center" class="col-sm-4">
+           <button type="button" class="btn btn-defalult" (click)=" showItem = false; ">取消</button>
+        </div>
+      </div>
+      </div>
+</div>

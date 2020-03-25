@@ -1,0 +1,365 @@
+{
+   "nav": {
+      "home": {
+         "label": "Home",
+         "desc": "Home description TBD"
+      },
+      "portal": {
+         "label": "Portal",
+         "desc": "I-Portal main to show all detailed info"
+      },
+      "analyzer": {
+         "label": "Analyzer",
+         "desc": "Analyzer description TBD"
+      },
+      "admin": {
+         "label": "Admin",
+         "desc": "Admin description TBD",
+         "dict": {
+            "label": "Data Dictionary",
+            "desc": "Data Dictionary description TBD"
+         },
+         "user": {
+            "label": "User Management",
+            "desc": "User related management, include add/remove user, assign role etc"
+         },
+         "role": {
+            "label": "Role Management",
+            "desc": "Role management description TBD"
+         },
+         "item": {
+            "label": "Menu Item Management",
+            "desc": "Menu item management description TBD"
+         },
+         "category": {
+            "label": "Category Management",
+            "desc": "Manage all categories for user to upload"
+         }
+      },
+      "logout": {
+         "title": "logout",
+         "message": "Confirm to logout"
+      }
+   },
+   "portal": {
+
+   },
+   "analyzer": {
+      "actions": {
+         "add": "New",
+         "update": "Update",
+         "refresh": "Refresh",
+         "download": "Download"
+      },
+      "fileList": {
+         "title": "File List",
+         "desc": "File list TBD",
+         "columns": {
+            "name": "File Name",
+            "extension": "Extension",
+            "version": "Latest Version",
+            "status": "Status",
+            "category": "Category",
+            "uptime": "Last Update Time",
+            "crtime": "Create Time",
+            "size": "Size",
+            "download": "Download"
+         }
+      },
+      "detail": {
+         "title": "Detail - {{name}}",
+         "titleNoSelection": "Detail",
+         "desc": "File Detail Description TBD",
+         "noSelection": "Select a file to view detail",
+         "version": {
+            "title": "Historical Versions",
+            "action": "Revert to version {{index}}"
+         },
+         "columns": {
+            "version": "Version",
+            "size": "Size",
+            "author": "Author",
+            "crtime": "Create Time",
+            "download": "Download"
+         },
+         "preview": "File Preview"
+      },
+      "uploadDialog": {
+         "new": {
+            "title": "Upload New File"
+         },
+         "update": {
+            "title": "Update File - {{name}}"
+         },
+         "dropZone": "Click or Drop File here",
+         "form": {
+            "name": "File Name",
+            "category": "Category",
+            "size": "Size",
+            "version": "Version",
+            "preview": "File Preview"
+         },
+         "uploading": "Uploading...",
+         "waiting": "Waiting for result...",
+         "invalid": {
+            "title": "Invalid file",
+            "desc": "The uploaded file is invalid against the selected category"
+         },
+         "uploadError": {
+            "title": "Error {{status}}",
+            "desc": "Uploading failed: {{desc}}"
+         },
+         "success": {
+            "title": "Success",
+            "desc": "Upload successfully"
+         },
+         "waitingTimeout": {
+            "title": "Waiting Timeout",
+            "desc": "Please refresh file list to get the latest status"
+         }
+      }
+   },
+   "login": {
+      "title": "Login",
+      "desc": "Sign in to you account",
+      "username": "Username",
+      "password": "Password",
+      "action": "Login"
+   },
+   "admin": {
+      "dict": {
+         "generalDomainName": "Domain_{{index}}",
+         "generalDomainCode": "Domain_Code_{{index}}",
+         "generalDomainValueName": "Value_{{index}}",
+         "generalDomainValueCode": "Value_Code_{{index}}",
+         "list": {
+            "title": "Data Dictionary List",
+            "desc": "This is the list of all data dictionaries",
+            "actions": {
+               "add": "New",
+               "update": "Save {{name}}",
+               "delete": "Delete {{name}}",
+               "refresh": "Refresh"
+            },
+            "columns": {
+               "domaincode": "Internal Code",
+               "domainnamecn": "Dictionary Name CN",
+               "domainnameen": "Dictionary Name EN",
+               "desc": "Description",
+               "cractor": "Create User",
+               "lastactor": "Last Change User",
+               "crtime": "Creation Time",
+               "lasttime": "Last Change Time",
+               "operation": "Operations"
+            },
+            "alert": {
+               "title": "Delete Domain - {{name}}",
+               "message": "Confirm to delete domain {{name}}?"
+            },
+            "status": {
+               "new": "New",
+               "changed": "changed, not saved",
+               "saved": "Saved"
+            }
+         },
+         "detail": {
+            "title": "Key/Value Pair - {{name}}",
+            "titleNoSeletion": "Key/Value Pair",
+            "desc": "This is the list of all key/value pairs in the dictionary",
+            "noSelection": "Select a dictionary to view detail",
+            "notSaved": "Key/value pair is unable to be added until the data dictionary is saved",
+            "actions": {
+               "add": "New",
+               "update": "Apply {{name}}",
+               "delete": "Delete {{name}}"
+            },
+            "columns": {
+               "domainvaluecode": "Key",
+               "domainvaluecn": "Value CN",
+               "domainvalueen": "Value EN",
+               "crtime": "Creation Time",
+               "cractor": "Creation User",
+               "lasttime": "Last Change Time",
+               "lastactor": "Last Update User",
+               "remark": "Description",
+               "operation": "Operations"
+            },
+            "alert": {
+               "title": "Delete Pair - {{name}}",
+               "message": "Confirm to delete key/value pair {{name}}?"
+            },
+            "status": {
+               "new": "New",
+               "changed": "changed, not saved",
+               "saved": "Saved"
+            }
+         }
+      },
+      "user": {
+         "list": {
+            "title": "User List",
+            "desc": "List of existing users",
+            "actions": {
+               "add": "New",
+               "update": "Edit",
+               "remove": "Remove",
+               "refresh": "Refresh"
+            },
+            "columns": {
+               "account": "Account",
+               "name": "Display Name",
+               "desc": "Description",
+               "category": "Assigned Category",
+               "role": "Role",
+               "crtime": "Create Time"
+            },
+            "alert": {
+               "title": "Remove User - {{name}}",
+               "message": "Confirm to remove user {{name}}"
+            }
+         },
+         "detail": {
+            "title": "User - {{name}}",
+            "titleNoSeletion": "User",
+            "desc": "Config the role and privilege of the user",
+            "noSelection": "Select a user to config"
+         },
+         "dialog": {
+            "titleNew": "Create User",
+            "titleUpdate": "Edit User - {{name}}",
+            "loading": "Loading...",
+            "form": {
+               "username": {
+                  "label": "Username",
+                  "tip": "Input username here",
+                  "required": {
+                     "title": "Username is required",
+                     "desc": "Username is empyt"
+                  },
+                  "unique": {
+                     "title": "Username has been used",
+                     "desc": "Username must be unique"
+                  },
+                  "error": {
+                     "title": "Failed to check username",
+                     "desc": "Unable to check with back-end service"
+                  }
+               },
+               "password": {
+                  "label": "Password",
+                  "tip": "Input password here",
+                  "required": {
+                     "title": "Password is required",
+                     "desc": "Password is empty"
+                  },
+                  "mismatch": {
+                     "title": "Password is mismatch",
+                     "desc": "Password and its confirmation are mismatch"
+                  }
+               },
+               "confirmPassword": {
+                  "label": "Confirm password",
+                  "tip": "Input password again"
+               },
+               "displayName": {
+                  "label": "Display name",
+                  "tip": "Input display name here"
+               },
+               "role": {
+                  "label": "User role",
+                  "type": {
+                     "user": "User",
+                     "admin": "Administrator"
+                  }
+               },
+               "category": {
+                  "label": "Apply categories"
+               },
+               "error": {
+                  "title": "400 Bad Request",
+                  "desc": "Failed to create user"
+               }
+            }
+         }
+      },
+      "category": {
+         "list": {
+            "title": "Category List",
+            "desc": "List of existing categories",
+            "actions": {
+               "add": "New",
+               "remove": "Remove",
+               "refresh": "Refresh"
+            },
+            "columns": {
+               "name": "Category Name",
+               "id": "ID",
+               "status": "Status",
+               "crtime": "Create Time"
+            },
+            "status": {
+               "valid": "Valid",
+               "invalid": "Invalid"
+            },
+            "alert": {
+               "title": "Remove Category - {{name}}",
+               "message": "Confirm to remove category {{name}}"
+            }
+         },
+         "dialog": {
+            "titleNew": "Create Category",
+            "loading": "Loading...",
+            "form": {
+               "name": {
+                  "label": "File name",
+                  "tip": "Input category name here",
+                  "required": {
+                     "title": "Category name is required",
+                     "desc": "Category name is empty"
+                  },
+                  "unique": {
+                     "title": "Category name has been used",
+                     "desc": "Category name must be unique"
+                  },
+                  "error": {
+                     "title": "Failed to check category name",
+                     "desc": "Unable to check with back-end service"
+                  }
+               },
+               "preview": "Quick Preview",
+               "file": {
+                  "tip": "Click or drag configuration file here",
+                  "required": {
+                     "title": "Category config file is required",
+                     "desc": "No category configuration file to be uploaded"
+                  },
+                  "error": {
+                     "title": "Internal error",
+                     "desc": "Failed to upload config file"
+                  }
+               }
+            }
+         }
+      }
+
+   },
+   "widget": {
+      "dialog": {
+         "cancelLabel": "Cancel",
+         "commitLabel": "OK",
+         "pendingMsg": "Validating..."
+      },
+      "alert": {
+         "yes": "Yes",
+         "No": "No"
+      }
+   },
+   "loading": "Loading...",
+   "noData": "No Data",
+   "errors": {
+      "timeout": {
+         "name": "Request Timout",
+         "desc": "Failed to operate last request, response timeout"
+      }
+   }
+}

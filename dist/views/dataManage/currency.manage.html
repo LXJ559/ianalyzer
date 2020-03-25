@@ -1,0 +1,88 @@
+<div class="w-100 px-1">
+   <div class="row m-y-1">
+      <div class="col col-xs-12">
+         <div class="card">
+            <div class="card-block">
+               <div class="row">
+                  <div class="col-sm-3">
+                     <h4 class="card-title">货币数据维护</h4>
+                     <div class="small text-muted" style="margin-top:-10px;">货币数据维护</div>
+                  </div>
+                  <div class="col-xs-9">
+                     <div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">
+                        
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+                           <!-- <button type="button" class="btn btn-info" (click)="refresh(fileGrid)">
+                              <i class="icon-refresh icons"
+                                 [ngClass]="{'fa-spin': isLoading}"></i>
+                              搜索
+                           </button> -->
+
+                           </div>
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+
+                           <button type="button" class="btn btn-outline-primary"
+                                   (click)="onBtnNewClicked()">
+                              <i class="icon-note icons"></i>
+                              新建货币
+                           </button>
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-12">
+                     <ag-grid-ng2 #buGrid class="w-100 ag-fresh" style="height: 60%" [gridOptions]="gridOptions"
+                                  [columnDefs]="fileGridColumns" [rowData]="rowData" rowHeight="30" enableSorting="false"
+                                  rowSelection="single" rowDeselection="true"
+                                  enableColResize="true" (gridReady)="onFileGridReady($event)"
+                                  (selectionChanged)="onRowSelected()">
+
+                     </ag-grid-ng2>
+                     
+                  </div>
+               </div>
+
+               <p></p>
+
+               
+            </div>
+         </div>
+
+      </div>
+   </div>
+   
+</div>
+
+<alert-widget #alert title="提示"
+              message="确定要删除该条记录吗?"
+              type="warning"></alert-widget>
+<div *ngIf="showItem" (click)="showItem=false;" style="width: 100%;height:100%;background: #aeaeae;position:fixed;top:0;left:0;opacity: 0.4;z-index: 100;">
+</div>
+
+<div *ngIf="showItem" style="width: 600px;height: 250px;background: #fff;position:fixed;top: 15%;left:50%;margin-left:-300px;z-index: 101;border-radius: 10px;padding: 20px;">
+      <div style="width:100%;height:50px;font-size: 18px;text-align: center;border-bottom: 1px solid #aeaeae;">
+        货币数据管理
+      </div>
+      <div style="padding:20px 10px 5px 10px;">
+        <label style="width:100%;">货币简称&nbsp;&nbsp;<input type="text" placeholder="输入货币简称" [(ngModel)]="buDetail.currencyShortName" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+
+      <div style="padding:5px 10px;">
+        <label style="width:100%;">货币名称&nbsp;&nbsp;<input type="text" placeholder="输入货币名称" [(ngModel)]="buDetail.currencyName" style="width:calc(100% - 200px);float: right;"></label>
+      </div>
+      
+
+      <div style="padding:20px 10px;" class="row">
+        <div style="text-align: center" class="col-sm-4">
+           <button type="button" class="btn btn-primary" (click)="onBtnSure()" [disabled]="!buDetail.currencyShortName||!buDetail.currencyName">确定</button>
+        </div>
+        <div style="text-align: center" class="col-sm-4">
+           <button type="button" class="btn btn-danger" (click)="removeItem()" *ngIf= "isNew">删除</button>
+        </div>
+        <div style="text-align: center" class="col-sm-4">
+           <button type="button" class="btn btn-defalult" (click)=" showItem = false; ">取消</button>
+        </div>
+      </div>
+</div>

@@ -1,0 +1,109 @@
+<div class="w-100 px-1">
+   <div class="row m-y-1">
+      <div class="col col-xs-12">
+         <div class="card">
+            <div class="card-block">
+               <div class="row">
+                  <div class="col-sm-3">
+                     <h4 class="card-title">{{"analyzer.fileList.title" | translate}}</h4>
+                     <div class="small text-muted" style="margin-top:-10px;">{{"analyzer.fileList.desc" | translate}}</div>
+                  </div>
+                  <div class="col-xs-9">
+                     <div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+                            <select class="form-control" style="width:100px;border-radius:3px !important;" [(ngModel)]="levelOneValue" (change)="leveloneChange(levelOneValue)">
+                              <option [value]="''">选择大类</option>
+                              <option *ngFor="let category of levelOne" [value]="category">{{category.split('*#*')[1]}}</option>
+                           </select>
+                        </div>
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+                            <select class="form-control" style="width:200px;border-radius:3px !important;" [(ngModel)]="levelTwoValue">
+                              <option [value]="''" *ngIf = "levelTwo.length == 0">选择模板</option>
+                              <option *ngFor="let categorys of levelTwo" [value]="categorys.levelTwoEn">{{categorys.levelTwoCn}}</option>
+                           </select>
+                        </div>
+                        
+                         <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+                            <form #myForm="ngForm" novalidate>
+                                <my-date-range-picker name="mydaterange" [options]="myDateRangePickerOptions"
+                                                [(ngModel)]="model" required></my-date-range-picker>
+                            </form>
+                         </div>
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+                           <button type="button" class="btn btn-info" (click)="refresh(fileGrid)">
+                              <i class="icon-refresh icons"
+                                 [ngClass]="{'fa-spin': isLoading}"></i>
+                              <!-- {{'analyzer.actions.refresh' | translate}} -->
+                              搜索
+                           </button>
+
+                           </div>
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+
+                           <button type="button" class="btn btn-outline-primary"
+                                   (click)="onBtnNewClicked()">
+                              <i class="icon-note icons"></i>
+                              {{"analyzer.actions.add" | translate}}
+                           </button>
+                           <button type="button" class="btn btn-outline-success"
+                                   data-toggle="modal" data-target="uploadDialog"
+                                   [disabled]="!isBtnUploadEnabled" *ngIf="getSelectedRow()"
+                                   (click)="onBtnUpdateClicked(fileGrid.api.getSelectedRows()[0])">
+                              <i class="icon-cloud-upload icons"></i>
+                              {{"analyzer.actions.update" | translate}}
+                           </button>
+                           <button type="button" class="btn btn-outline-info"
+                                   *ngIf="getSelectedRow()"
+                                   (click)="onBtnDownloadClicked(getSelectedRow())">
+                              <i class="icon-cloud-download icons"></i>
+                              {{"analyzer.actions.download" | translate}}
+                           </button>
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-12">
+                     <ag-grid-ng2 #fileGrid class="w-100 ag-fresh" style="height: 300px" [gridOptions]="gridOptions"
+                                  [columnDefs]="fileGridColumns" rowHeight="30" enableSorting="false"
+                                  rowSelection="single" rowDeselection="true"
+                                  enableColResize="true" (gridReady)="onFileGridReady($event)"
+                                  (rowSelected)="onFileGridRowSelected()">
+
+                     </ag-grid-ng2>
+                  </div>
+               </div>
+
+               <p></p>
+
+               <div class="row">
+                  <div class="col-sm-5">
+                     <h4 class="card-title">{{detailTitle}}</h4>
+                     <div class="small text-muted" style="margin-top:-10px;">{{'analyzer.detail.desc' | translate}}</div>
+                  </div>
+               </div>
+
+               <div class="row">
+                  
+                  <div class="col-sm-12" [hidden]="getSelectedRow() === null">
+                     <tabset type="pills">
+                        <tab heading="{{'analyzer.detail.version.title' | translate}}" active="true" customClass="p-0">
+                           <ag-grid-ng2 #versionGrid class="w-100 ag-fresh" style="height: 300px" [gridOptions]="gridOptions"
+                                        [columnDefs]="versionGridColumns" [rowData]="versionGridRowData"
+                                        rowHeight="30" enableSorting="true" rowSelection="single" rowDeselection="true"
+                                        enableColResize="true" (gridReady)="$event.api.sizeColumnsToFit()">
+                           </ag-grid-ng2>
+                        </tab>
+                        <tab heading="{{'analyzer.detail.preview' | translate}}">
+                           <excel-preview #preview [styles]="{'height': '300px'}" [fileData]="getSelectedRow()"></excel-preview>
+                        </tab>
+                     </tabset>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <upload-dialog #uploadDialog (dataCommitted)="refresh(fileGrid)"></upload-dialog>
+</div>

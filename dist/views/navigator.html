@@ -1,0 +1,89 @@
+<header class="navbar">
+   <div class="container-fluid">
+      <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">&#9776;</button>
+      <a class="navbar-brand" [routerLink]="'/home'"></a>
+      <ul class="nav navbar-nav hidden-md-down">
+         <li class="nav-item px-1" routerLinkActive="active">
+            <a routerLink="/home/analyzer" class="nav-link">{{"nav.analyzer.label" | translate}}</a>
+         </li>
+         <li class="nav-item px-1" dropdown routerLinkActive="active"
+             *ngIf="user.type === adminType">
+            <a class="nav-link dropdown-toggle" dropdownToggle href
+               role="button">{{"nav.admin.label" | translate}}</a>
+            <ul dropdownMenu role="menu">
+               <li role="menuitem">
+                  <a class="dropdown-item" [routerLink]="'/home/admin/user'">
+                     {{"nav.admin.user.label" | translate}}
+                  </a>
+               </li>
+               <li>
+                  <a class="dropdown-item" [routerLink]="'/home/admin/category'">
+                     {{"nav.admin.category.label" | translate}}
+                  </a>
+               </li>
+               <li>
+                  <a class="dropdown-item" [routerLink]="'/home/admin/dict'">
+                     数据字典
+                  </a>
+               </li>
+
+               <li>
+                  <a class="dropdown-item" [routerLink]="'/home/dataManage/agent'">
+                     代理商数据维护
+                  </a>
+               </li>
+
+               <li>
+                  <a class="dropdown-item" [routerLink]="'/home/dataManage/currency'">
+                     货币数据维护
+                  </a>
+               </li>
+
+               <li>
+                  <a class="dropdown-item" [routerLink]="'/home/dataManage/bu'">
+                     BU数据维护
+                  </a>
+               </li>
+
+               <li>
+                  <a class="dropdown-item" [routerLink]="'/home/dataManage/product'">
+                     产品数据维护
+                  </a>
+               </li>
+
+               <!-- <li>
+                  <a class="dropdown-item" [routerLink]="'/home/dataManage/hospital'">
+                     医院数据维护
+                  </a>
+               </li> -->
+
+               <li>
+                  <a class="dropdown-item" [routerLink]="'/home/dataManage/unit'">
+                     货币单位数据维护
+                  </a>
+               </li>
+
+               <li>
+                  <a class="dropdown-item" [routerLink]="'/home/dataManage/dataOutput'">
+                     主数据导入
+                  </a>
+               </li>
+            </ul>
+         </li>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+         <li class="nav-item px-1" *ngIf="user">
+            <a class="nav-link" role="button" (click)="$event.preventDefault()" href="#">
+               {{user.displayname || user.loginname}} <i class="icon icon-settings"></i>
+            </a>
+         </li>
+         <li class="nav-item px-1">
+            <a class="nav-link" (click)="logout($event)" href="#">{{"nav.logout.title" | translate}}</a>
+         </li>
+      </ul>
+   </div>
+</header>
+
+<alert-widget #alert title="{{'nav.logout.title' | translate }}"
+              message="{{'nav.logout.message' | translate }}"
+              type="warning"></alert-widget>

@@ -1,0 +1,71 @@
+<div class="w-100 px-1">
+   <div class="row m-y-1">
+      <div class="col col-xs-12">
+         <div class="card">
+            <div class="card-block">
+               <div class="row">
+                  <div class="col-sm-5">
+                     <h4 class="card-title">{{"admin.category.list.title" | translate}}</h4>
+                     <div class="small text-muted" style="margin-top:-10px;">{{"admin.category.list.desc" | translate}}</div>
+                  </div>
+                  <div class="col-xs-7">
+                     <div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">
+
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+                           <button type="button" class="btn btn-info" (click)="refresh(categoryGrid)">
+                              <i class="icon-refresh icons"
+                                 [ngClass]="{'fa-spin': isLoading}"></i>
+                              {{"admin.category.list.actions.refresh" | translate}}
+                           </button>
+
+                        </div>
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+
+                           <button type="button" class="btn btn-primary"
+                                   (click)="onBtnNewClicked()">
+                              <i class="fa fa-plus"></i>
+                              {{"admin.category.list.actions.add" | translate}}
+                           </button>
+                           <button type="button" class="btn btn-danger" *ngIf="selectedCategory"
+                                   (click)="onBtnRemoveClicked(categoryGrid)">
+                              <i class="fa fa-remove"></i>
+                              {{"admin.category.list.actions.remove" | translate}}
+                           </button>
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+
+               <div class="row">
+                  <div class="col-sm-12">
+                     <ag-grid-ng2 #categoryGrid class="w-100 ag-fresh" style="height: 300px" [gridOptions]="gridOptions"
+                                  [columnDefs]="gridColumns" rowHeight="30" enableSorting="true"
+                                  rowSelection="single" rowDeselection="true" enableColResize="true"
+                                  (gridReady)="onGridReady($event)" (rowSelected)="onRowSelected()">
+
+                     </ag-grid-ng2>
+                  </div>
+               </div>
+               <!-- <div class="row" style="margin-top:20px;">
+                 <div class="col-sm-12">
+                   <h4 class="card-title">文件详情</h4>
+                 </div>
+               </div>
+
+               <div class="row">
+                 <div class="col-sm-12">
+                   <category-preview [rowData]="rowData"></category-preview>
+                 </div>
+               </div> -->
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<category-upload-form #CategoryUploadFormComponent (dataCommitted)="refresh(categoryGrid)"></category-upload-form>
+
+<alert-widget #alert title="{{'admin.category.list.alert.title' | translate:{name: selectedCategory?.templetename} }}"
+              message="{{'admin.category.list.alert.message' | translate:{name: selectedCategory?.templetename} }}"
+              type="warning"></alert-widget>

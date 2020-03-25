@@ -1,0 +1,68 @@
+<div class="w-100 px-1">
+   <div class="row m-y-1">
+      <div class="col col-xs-12">
+         <div class="card">
+            <div class="card-block">
+               <div class="row">
+                  <div class="col-sm-3">
+                     <h4 class="card-title">数据导入</h4>
+                     <div class="small text-muted" style="margin-top:-10px;">数据导入</div>
+                  </div>
+                  <div class="col-xs-5"></div>
+                  <div class="col-xs-4" style="text-align: right;">
+                    <button *ngIf="!showLoading" type="button" class="btn btn-primary"  style="width:100px"
+                             (click)="onSubmit()" [disabled]="!category||!fileName">
+                        <i class="fa fa-plus"></i>
+                       提交
+                     </button>
+
+                     <button type="button" *ngIf="showLoading" class="btn btn-primary" disabled style="width:100px">
+                        上传中{{loadingText}}
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="card">
+            <div class="card-block">
+              <div class="row">
+                  <div class="col-sm-3">
+                    <p>模板</p>
+                  </div>
+                  <div class="col-xs-5">
+                    <select style="width: 100%;" [(ngModel)]="category" placeholder="选择Category" (change)="cateGoryChange()">
+                            <option *ngFor="let item of categorys" [value]="item.category">{{item.templatename}}</option>
+                    </select>
+                  </div>
+              </div>
+            </div>
+         </div>
+
+        <div class="card">
+            <div class="card-block">
+               <div class="row">
+                  <div class="col-sm-3">
+                    <p>选取Excel文件</p>
+                  </div>
+                  <div class="col-xs-5">
+                    <div (click)="fileInput.click()" class="card card-block uploader-drop-zone text-md-center">
+                      <span *ngIf="!fileName">在此点击选取Excel文件</span>
+                      <span *ngIf="fileName">{{fileName}}</span>
+                      <input type="file" #fileInput (change)="getUpload($event)" [hidden]="true" >
+                   </div>
+                  </div>
+                  
+               </div>
+
+               
+            </div>
+         </div>
+
+
+      </div>
+   </div>
+   
+</div>
+
+

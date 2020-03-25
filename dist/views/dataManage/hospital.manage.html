@@ -1,0 +1,79 @@
+<div class="w-100 px-1">
+   <div class="row m-y-1">
+      <div class="col col-xs-12">
+         <div class="card">
+            <div class="card-block">
+               <div class="row">
+                  <div class="col-sm-3">
+                     <h4 class="card-title">医院数据维护</h4>
+                     <div class="small text-muted" style="margin-top:-10px;">医院数据维护</div>
+                  </div>
+                  <div class="col-xs-9">
+                     <div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">
+                        
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+                           <!-- <button type="button" class="btn btn-info" (click)="refresh(fileGrid)">
+                              <i class="icon-refresh icons"
+                                 [ngClass]="{'fa-spin': isLoading}"></i>
+                              搜索
+                           </button> -->
+
+                           </div>
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+
+                           <!-- <button type="button" class="btn btn-outline-primary"
+                                   (click)="onBtnNewClicked()">
+                              <i class="icon-note icons"></i>
+                              新建医院
+                           </button> -->
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-12">
+                     <ag-grid-ng2 #buGrid class="w-100 ag-fresh" style="height: 60%" [gridOptions]="gridOptions"
+                                  [columnDefs]="fileGridColumns" [rowData]="rowData" rowHeight="30" enableSorting="false"
+                                  rowSelection="single" rowDeselection="true"
+                                  enableColResize="true" (gridReady)="onFileGridReady($event)"
+                                  (selectionChanged)="onRowSelected()">
+
+                     </ag-grid-ng2>
+                     
+                  </div>
+               </div>
+
+               <p></p>
+
+               
+            </div>
+         </div>
+
+         <!-- <div class="card" style="padding: 10px;" *ngIf="showItem">
+           <div class="row">
+                <div class="col-sm-2" style="text-align: center">
+                   <input type="text" placeholder="输入医院CODE" [(ngModel)]="buDetail.hospitalcode">
+                </div>
+                <div class="col-sm-2" style="text-align: center">
+                   <input type="text" placeholder="输入医院名称" [(ngModel)]="buDetail.hospitalname">
+                </div>
+                <div class="col-sm-2" style="text-align: center">
+                   <select style="width: 100%;" [(ngModel)]="buDetail.buCode" placeholder="选择产品BU" [ngModelOptions]="{standalone: true}">
+                        <option [value]="category.bucode" *ngFor="let category of buList">{{category.bunamecn}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-4" style="text-align: center" *ngIf="buDetail.hospitalcode&&buDetail.hospitalname&&buDetail.buCode">
+                   <button type="button" class="btn btn-defalult" (click)="onBtnSure()">确定</button>
+                   <button *ngIf= "isNew" type="button" class="btn btn-danger" (click)="removeItem()">删除</button>
+                </div>
+             </div>
+         </div>
+      </div> -->
+   </div>
+   
+</div>
+
+<alert-widget #alert title="提示"
+              message="确定要删除该条记录吗?"
+              type="warning"></alert-widget>

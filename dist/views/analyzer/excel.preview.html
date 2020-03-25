@@ -1,0 +1,14 @@
+<h3 class="text-muted w-100 text-sm-center" *ngIf="loadingData"><i class="fa fa-spinner fa-spin"></i> {{'loading' | translate}}</h3>
+<h3 class="text-muted w-100 text-sm-center" *ngIf="noData">{{'noData' | translate}}</h3>
+
+<tabset [ngClass]="{'hide-tab': previewSheetSet.length === 1}">
+   <tab *ngFor="let previewData of previewSheetSet" [heading]="previewData.sheetName">
+      <ag-grid-ng2 #grid class="w-100 ag-fresh" [ngStyle]="styles" [gridOptions]="gridOptions"
+                   [columnDefs]="previewData.columnDef" [rowData]="previewData.rowData"
+                   rowHeight="30" rowSelection="single" (gridSizeChanged)="fixColumnWidth($event, grid)"
+                   (gridReady)="$event.api.sizeColumnsToFit()"
+                   rowDeselection="true" enableColResize="true">
+
+      </ag-grid-ng2>
+   </tab>
+</tabset>

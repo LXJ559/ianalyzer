@@ -1,0 +1,365 @@
+{
+   "nav": {
+      "home": {
+         "label": "首页",
+         "desc": "首页描述待定"
+      },
+      "portal": {
+         "label": "报表",
+         "desc": "I-Portal显示详细信息"
+      },
+      "analyzer": {
+         "label": "手工录入工具",
+         "desc": "手工录入工具描述待定"
+      },
+      "admin": {
+         "label": "管理员",
+         "desc": "管理员描述待定",
+         "dict": {
+            "label": "数据字典",
+            "desc": "数据字典描述待定"
+         },
+         "user": {
+            "label": "用户管理",
+            "desc": "用户相关管理，包括增加/删除、分配用户、角色等权利"
+         },
+         "role": {
+            "label": "角色管理",
+            "desc": "角色管理描述待定"
+         },
+         "item": {
+            "label": "菜单项目管理",
+            "desc": "菜单项目管理描述待定"
+         },
+         "category": {
+            "label": "模板管理",
+            "desc": "为用户上传提供模板管理功能"
+         }
+      },
+      "logout": {
+         "title": "注销",
+         "message": "确认注销"
+      }
+   },
+   "portal": {
+
+   },
+   "analyzer": {
+      "actions": {
+         "add": "上传新文件",
+         "update": "更新现有文件",
+         "refresh": "刷新",
+         "download": "下载"
+      },
+      "fileList": {
+         "title": "文件列表",
+         "desc": "文件列表描述待定",
+         "columns": {
+            "name": "文件名",
+            "extension": "扩展名",
+            "version": "最新版本",
+            "status": "状态",
+            "category": "模板",
+            "uptime": "最后更新时间",
+            "crtime": "创建时间",
+            "size": "大小",
+            "download": "下载"
+         }
+      },
+      "detail": {
+         "title": "文件详情-{{name}}",
+         "titleNoSelection": "文件详情",
+         "desc": "文件详情描述待定",
+         "noSelection": "查看文件详细信息",
+         "version": {
+            "title": "历史版本",
+            "action": "还原版本{{index}}"
+         },
+         "columns": {
+            "version": "版本",
+            "size": "大小",
+            "author": "作者",
+            "crtime": "创建时间",
+            "download": "下载"
+         },
+         "preview": "文件预览"
+      },
+      "uploadDialog": {
+         "new": {
+            "title": "上传新文件"
+         },
+         "update": {
+            "title": "更新文件-{{name}}"
+         },
+         "dropZone": "在此点击或拖放文件",
+         "form": {
+            "name": "文件名",
+            "category": "模板",
+            "size": "文件大小",
+            "version": "版本",
+            "preview": "文件预览"
+         },
+         "uploading": "上传...",
+         "waiting": "等待结果...",
+         "invalid": {
+            "title": "文件无效",
+            "desc": "上传文件与所选类不符"
+         },
+         "uploadError": {
+            "title": "错误{{status}}",
+            "desc": "上传失败：{{desc}}"
+         },
+         "success": {
+            "title": "成功",
+            "desc": "上传成功"
+         },
+         "waitingTimeout": {
+            "title": "等待超时",
+            "desc": "刷新文件列表以获得最新状态"
+         }
+      }
+   },
+   "login": {
+      "title": "登录",
+      "desc": "登录您的账户",
+      "username": "用户名",
+      "password": "登录密码",
+      "action": "登录"
+   },
+   "admin": {
+      "dict": {
+         "generalDomainName": "域名_{{index}}",
+         "generalDomainCode": "域名_编码_{{index}}",
+         "generalDomainValueName": "域值_{{index}}",
+         "generalDomainValueCode": "域值_编码_{{index}}",
+         "list": {
+            "title": "数据字典列表",
+            "desc": "数据字典所有列表",
+            "actions": {
+               "add": "新建",
+               "update": "保存{{name}}",
+               "delete": "删除{{name}}",
+               "refresh": "刷新"
+            },
+            "columns": {
+               "domaincode": "内部编码",
+               "domainnamecn": "字典名称 中文",
+               "domainnameen": "字典名称 英文",
+               "desc": "描述",
+               "cractor": "创建用户",
+               "lastactor": "最新更改用户",
+               "crtime": "创建时间",
+               "lasttime": "最新更改时间",
+               "operation": "操作"
+            },
+            "alert": {
+               "title": "删除域-{{name}}",
+               "message": "确认删除域{{name}}?"
+            },
+            "status": {
+               "new": "新建",
+               "changed": "更改但未保存",
+               "saved": "已保存"
+            }
+         },
+         "detail": {
+            "title": "键值对- {{name}}",
+            "titleNoSeletion": "键值对",
+            "desc": "数据字典的所有键值对列表",
+            "noSelection": "选择字典详细信息",
+            "notSaved": "只有已保存在数据字典中，键值对才能被添加",
+            "actions": {
+               "add": "新建",
+               "update": "应用{{name}}",
+               "delete": "删除{{name}}"
+            },
+            "columns": {
+               "domainvaluecode": "编码",
+               "domainvaluecn": "域值",
+               "domainvalueen": "域值",
+               "crtime": "创建时间",
+               "cractor": "创建用户",
+               "lasttime": "最新更改时间",
+               "lastactor": "最新上传时间",
+               "remark": "介绍",
+               "operation": "操作"
+            },
+            "alert": {
+               "title": "删除对- {{name}}",
+               "message": "确认删除键值对{{name}}?"
+            },
+            "status": {
+               "new": "新建",
+               "changed": "更改但未保存",
+               "saved": "已保存"
+            }
+         }
+      },
+      "user": {
+         "list": {
+            "title": "用户列表",
+            "desc": "已建用户列表",
+            "actions": {
+               "add": "新建",
+               "update": "编辑",
+               "remove": "删除",
+               "refresh": "刷新"
+            },
+            "columns": {
+               "account": "账户",
+               "name": "显示名称",
+               "desc": "描述",
+               "category": "分配模板",
+               "role": "角色",
+               "crtime": "创建时间"
+            },
+            "alert": {
+               "title": "移除用户- {{name}}",
+               "message": "确认移除用户{{name}}"
+            }
+         },
+         "detail": {
+            "title": "用户- {{name}}",
+            "titleNoSeletion": "用户",
+            "desc": "配置用户角色和权限",
+            "noSelection": "选择分配用户"
+         },
+         "dialog": {
+            "titleNew": "创建用户",
+            "titleUpdate": "编辑用户- {{name}}",
+            "loading": "正在上传...",
+            "form": {
+               "username": {
+                  "label": "用户名",
+                  "tip": "在此输入用户名",
+                  "required": {
+                     "title": "需要输入用户名",
+                     "desc": "用户名为空"
+                  },
+                  "unique": {
+                     "title": "此用户名已被使用",
+                     "desc": "必须是唯一用户名"
+                  },
+                  "error": {
+                     "title": "用户名验证失败",
+                     "desc": "后端验证失败"
+                  }
+               },
+               "password": {
+                  "label": "登录密码",
+                  "tip": "在此输入您的密码",
+                  "required": {
+                     "title": "需要输入您的密码",
+                     "desc": "密码为空"
+                  },
+                  "mismatch": {
+                     "title": "密码不匹配",
+                     "desc": "密码和验证信息不匹配"
+                  }
+               },
+               "confirmPassword": {
+                  "label": "确认密码",
+                  "tip": "再次输入密码"
+               },
+               "displayName": {
+                  "label": "显示名称",
+                  "tip": "在此输入名称"
+               },
+               "role": {
+                  "label": "用户角色",
+                  "type": {
+                     "user": "用户",
+                     "admin": "管理员"
+                  }
+               },
+               "category": {
+                  "label": "应用模板"
+               },
+               "error": {
+                  "title": "请求出错",
+                  "desc": "创建用户失败"
+               }
+            }
+         }
+      },
+      "category": {
+         "list": {
+            "title": "模板列表",
+            "desc": "已有模板列表",
+            "actions": {
+               "add": "新建",
+               "remove": "删除",
+               "refresh": "刷新"
+            },
+            "columns": {
+               "name": "模板名称",
+               "id": "模板代号",
+               "status": "状态",
+               "crtime": "新建时间"
+            },
+            "status": {
+               "valid": "有效的",
+               "invalid": "无效的"
+            },
+            "alert": {
+               "title": "删除模板名 - {{name}}",
+               "message": "确认删除模板名{{name}}"
+            }
+         },
+         "dialog": {
+            "titleNew": "新建模板",
+            "loading": "正在加载...",
+            "form": {
+               "name": {
+                  "label": "模板名称",
+                  "tip": "在此输入模板名称",
+                  "required": {
+                     "title": "需要输入模板名称",
+                     "desc": "模板名称为空"
+                  },
+                  "unique": {
+                     "title": "模板名称已存在",
+                     "desc": "模板名称须唯一"
+                  },
+                  "error": {
+                     "title": "模板名称验证失败",
+                     "desc": "与后端服务器验证验证失败"
+                  }
+               },
+               "preview": "快速预览",
+               "file": {
+                  "tip": "在此点击或拖拽配置文件",
+                  "required": {
+                     "title": "需要模板配置文件",
+                     "desc": "未上传模板配置文件"
+                  },
+                  "error": {
+                     "title": "内部错误",
+                     "desc": "上传配置文件失败"
+                  }
+               }
+            }
+         }
+      }
+
+   },
+   "widget": {
+      "dialog": {
+         "cancelLabel": "取消",
+         "commitLabel": "确认",
+         "pendingMsg": "正在验证..."
+      },
+      "alert": {
+         "yes": "确认",
+         "No": "取消"
+      }
+   },
+   "loading": "正在加载...",
+   "noData": "无数据",
+   "errors": {
+      "timeout": {
+         "name": "响应超时",
+         "desc": "无法操作最新请求，响应超时"
+      }
+   }
+}

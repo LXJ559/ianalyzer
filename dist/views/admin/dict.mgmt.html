@@ -1,0 +1,100 @@
+<div class="w-100 px-1">
+   <div class="row m-y-1">
+      <div class="col col-xs-12">
+         <div class="card">
+            <div class="card-block">
+               <div class="row">
+                  <div class="col-sm-5">
+                     <h4 class="card-title">{{"admin.dict.list.title" | translate}}</h4>
+                     <div class="small text-muted" style="margin-top:-10px;">{{"admin.dict.list.desc" | translate}}</div>
+                  </div>
+                  <div class="col-xs-7">
+                     <div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">
+
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+                           <button type="button" class="btn btn-info" (click)="refresh(dictGrid)">
+                              <i class="icon-refresh icons"
+                                 [ngClass]="{'fa-spin': isLoading}"></i>
+                              {{'admin.dict.list.actions.refresh' | translate}}
+                           </button>
+
+                           </div>
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group">
+
+                           <button type="button" class="btn btn-primary"
+                                   (click)="onBtnNewClicked(dictGrid)">
+                              <i class="fa fa-plus"></i>
+                              {{"admin.dict.list.actions.add" | translate}}
+                           </button>
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+
+               <div class="row">
+                  <div class="col-sm-12">
+                     <ag-grid-ng2 #dictGrid class="w-100 ag-fresh" style="height: 300px" [gridOptions]="gridOptions"
+                                  [columnDefs]="dictGridColumns" rowHeight="30" enableSorting="true"
+                                  rowSelection="single" rowDeselection="true" (cellValueChanged)="onCellChanged($event)"
+                                  enableColResize="true" (selectionChanged)="onDictGridRowSelected(dictGrid, kvGrid)"
+                                  (gridReady)="onDictGridReady($event)" (modelUpdated)="onModelUpdated(dictGrid)"
+                                  (cellDoubleClicked)="onCellDbClicked($event)">
+
+                     </ag-grid-ng2>
+                  </div>
+               </div>
+
+               <p></p>
+
+               <div class="row">
+                  <div class="col-sm-5">
+                     <h4 class="card-title"
+                         *ngIf="isShowKvDetail">
+                        {{'admin.dict.detail.title' | translate:{name: selectedDict.domaincode } }}</h4>
+                     <h4 class="card-title"
+                         *ngIf="!isShowKvDetail">
+                        {{'admin.dict.detail.titleNoSeletion' | translate}}</h4>
+                     <div class="small text-muted" style="margin-top:-10px;">{{'admin.dict.detail.desc' | translate}}</div>
+                  </div>
+                  <div class="col-sm-7">
+                     <div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group hidden-sm-down" role="group" aria-label="Second group"
+                             *ngIf="isShowKvDetail">
+                           <button type="button" class="btn btn-primary" (click)="onAddKvPair(kvGrid)"
+                                   [disabled]="isLoading">
+                              <i class="fa fa-plus"></i>
+                              {{"admin.dict.detail.actions.add" | translate}}
+                           </button>
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+
+               <div class="row">
+                  <h3 class="w-100 text-sm-center text-muted"
+                      *ngIf="!isShowKvDetail && !selectedDict">
+                     {{'admin.dict.detail.noSelection' | translate}}
+                  </h3>
+                  <h3 class="w-100 text-sm-center text-muted"
+                      *ngIf="!isShowKvDetail && selectedDict && selectedDict.isCodeEditable">
+                     {{'admin.dict.detail.notSaved' | translate}}
+                  </h3>
+                  <div class="col-sm-12" [hidden]="!isShowKvDetail">
+                     <ag-grid-ng2 #kvGrid class="w-100 ag-fresh" style="height: 300px" [gridOptions]="gridOptions1"
+                                  [columnDefs]="kvGridColumns"
+                                  rowHeight="30" enableSorting="true" (modelUpdated)="onModelUpdated(kvGrid)"
+                                  enableColResize="true" rowDeselection="true"
+                                  (gridReady)="$event.api.sizeColumnsToFit()">
+                     </ag-grid-ng2>
+                  </div>
+               </div>
+
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<alert-widget #alert type="warning"></alert-widget>

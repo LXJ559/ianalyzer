@@ -1,0 +1,94 @@
+/*!
+ * Customize styles for product
+ * @auth Victor Lu
+ */
+.card-header .card-actions a.btn-close:hover, .card-header .card-actions button.btn-close:hover {
+  background-color: #d9534f;
+  color: #fff;
+  border-left: 1px solid #d1d4d7; }
+
+.simple-notification-wrapper {
+  z-index: 1050 !important; }
+
+.uploader-drop-zone {
+  border: dashed 3px #636c72;
+  background-color: #eceeef; }
+
+.uploader-file-over {
+  border: dashed 3px #5cb85c; }
+
+.row-header {
+  background-color: #F8F9FA; }
+
+.ag-fresh .ag-header {
+  border-color: #D9D9D9 !important; }
+
+.ag-fresh .ag-root {
+  border-color: #D9D9D9 !important; }
+
+.ag-fresh .ag-header-container {
+  background-color: #F8F9FA !important; }
+
+.ag-fresh .ag-cell-not-inline-editing {
+  padding: 2px 5px 2px 5px; }
+
+.ag-fresh .ag-header-cell {
+  background-color: #F8F9FA;
+  border-color: #D9D9D9 !important; }
+
+.form-control[readonly] {
+  background-color: inherit; }
+
+.preview-header {
+  background-color: #bebebe;
+  color: #f9f9f9; }
+
+.dialog-mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 2000;
+  top: 0;
+  left: 0; }
+
+tabset[type="pills"] > .tab-content {
+  border: none; }
+  tabset[type="pills"] > .tab-content > .tab-pane {
+    padding: 5px 0px; }
+
+excel-preview tabset.hide-tab ul {
+  display: none; }
+
+excel-preview tabset .tab-content {
+  border: none; }
+  excel-preview tabset .tab-content > .tab-pane {
+    padding: 0px; }
+
+div.text-muted {
+  margin-top: 5px;
+  margin-bottom: 10px; }
+  div.text-muted.small {
+    margin-top: -5px !important; }
+
+.checkbox-inline + .checkbox-inline, .radio-inline + .radio-inline {
+  margin-top: 0;
+  margin-left: 10px; }
+
+.checkbox-inline, .radio-inline {
+  position: relative;
+  display: inline-block;
+  padding-right: 20px;
+  margin-bottom: 0;
+  font-weight: 400;
+  vertical-align: middle;
+  cursor: pointer; }
+
+.checkbox-p {
+  margin: 0px; }
+
+.more-pd {
+  margin-right: 10px; }
+
+.rm-mg {
+  margin-bottom: 0px; }
